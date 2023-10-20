@@ -44,3 +44,19 @@ export default function AppContextProvider({ children }) {
     navigate( { search: `?page=${page}`});
     setPage(page);
   };
+
+  const value = {
+    posts,
+    setPosts,
+    loading,
+    setLoading,
+    page,
+    setPage,
+    totalPages,
+    setTotalPages,
+    fetchBlogPosts,
+    handlePageChange,
+  };
+
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+}
