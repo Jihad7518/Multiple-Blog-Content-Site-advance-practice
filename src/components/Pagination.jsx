@@ -1,4 +1,3 @@
-
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 
@@ -15,3 +14,21 @@ export default function Pagination() {
             onClick={() => handlePageChange(page - 1)}
             className="border-2 border-gray-300 py-1 px-4 rounded-md"
           >
+            Previous
+          </button>
+        )}
+        {page < totalPages && (
+          <button
+            onClick={() => handlePageChange(page + 1)}
+            className="border-2 border-gray-300 py-1 px-4 rounded-md"
+          >
+            Next
+          </button>
+        )}
+        <p className="text-sm font-semibold ml-auto">
+          Page {page} of {totalPages}
+        </p>
+      </div>
+    </div>
+  );
+}
