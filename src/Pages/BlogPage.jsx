@@ -17,3 +17,28 @@ const BlogPage = () => {
     const {setLoading, loading} = useContext(AppContext);
 
     const blogId = location.pathname.split("/").at(-1);
+    async function fetchRelatedBlogs() {
+        setLoading(true);
+        let url = `${newBaseUrl}get-blog?blogId=${blogId}`;
+        console.log("URL is: ");
+        console.log(url);
+        try {
+            const res = await fetch(url);
+            const data = await res.json();
+            
+            setBlog(data.blog);
+            setRelatedBlogs(data.relatedBlogs);
+        }
+        catch(error) {
+            console.log("Error aagya in blog id wali call");
+            setBlog(null);
+            setRelatedBlogs([]);
+        }
+        setLoading(false);
+    }
+
+    useEffect( () => {
+        if(blogId) {
+            fetchRelatedBlogs();
+        }
+    }, [location.pathname] )
