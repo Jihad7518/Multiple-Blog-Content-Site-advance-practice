@@ -1,4 +1,3 @@
-
 import React, { useContext } from 'react'
 import { useNavigate, useNavigation } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
@@ -17,6 +16,7 @@ const BlogPage = () => {
     const {setLoading, loading} = useContext(AppContext);
 
     const blogId = location.pathname.split("/").at(-1);
+
     async function fetchRelatedBlogs() {
         setLoading(true);
         let url = `${newBaseUrl}get-blog?blogId=${blogId}`;
@@ -42,6 +42,7 @@ const BlogPage = () => {
             fetchRelatedBlogs();
         }
     }, [location.pathname] )
+
   return (
     <div>
       <Header/>
@@ -78,3 +79,7 @@ const BlogPage = () => {
 
 
     </div>
+  )
+}
+
+export default BlogPage
